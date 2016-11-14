@@ -108,6 +108,7 @@ std::vector<Floop *> MyFunction(Derp derp, Floop *floop)
       ++counter;
   }
 
+  // Warn if low success rate
   if(counter < derpSize / 2 - 1)
     printf("Warning! Less than 50% success rate");
 
