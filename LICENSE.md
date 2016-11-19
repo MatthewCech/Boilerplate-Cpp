@@ -1,8 +1,8 @@
 #### Don't Be a Jerk: The Open Source Software License.
 ---
-Adapted from: https://github.com/JohannesMP/Dont-be-a-Jerk
-Originally from: https://github.com/evantahler/Dont-be-a-Jerk
- 
+- Adapted from: https://github.com/JohannesMP/Dont-be-a-Jerk
+- Originally from: https://github.com/evantahler/Dont-be-a-Jerk
+
 _I_ am the software author - ReverieWisp on Github.
 _You_ are the user of this software. You might be a _we_, and that's OK!
 
