@@ -27,71 +27,19 @@ smashed the implementation into the header.
   #define RTest_ASSERT(a) do{ if(!(a)) { throw(RTest::RException("Assert Failed!")); } } while (0)                                                  
 #endif
 
-
-#pragma once
-
-//Prototypes:
-namespace RException
+  /////////////////////////////////
+  //Testing functions for asserts//
+/////////////////////////////////
+bool Near(double a, double b)
 {
-  //Undefine the exception structure first to avoid expanding the macro.
-  #undef RException
-  struct RException
-  {
-    //Constructor
-    RException(std::string file, unsigned int line, std::string message);
-
-    //Member functions and Friends
-    friend std::ostream &operator<<(std::ostream &os, const RException &rhs);
-
-    //Data
-    std::string File;
-    unsigned int Line;
-    std::string Message;
-  };
+  if (a + RTest_NEAR_DOUBLE > b && a - RTest_NEAR_DOUBLE < b)
+    return true;
+  return false;
 }
 
-namespace RTest
+bool Near(float a, float b)
 {
-    /////////////////////////////////
-   //Testing functions for asserts//
-  /////////////////////////////////
-  bool Near(double a, double b)
-  {
-    if (a + RTest_NEAR_DOUBLE > b && a - RTest_NEAR_DOUBLE < b)
-      return true;
-    return false;
-  }
-
-  bool Near(float a, float b)
-  {
-    if (a + RTest_NEAR_FLOAT > b && a - RTest_NEAR_FLOAT < b)
-      return true;
-    return false;
-  }
-
-
-
-
-
-
-    //////////////
-   //RException//
-  //////////////
-  //Handle constructor
-  RException::RException(std::string file, unsigned int line, std::string message)
-  : File(file)
-  , Line(line)
-  , Message(message)
-  {  }
-
-  //Define print formatting 
-  std::ostream &operator<<(std::ostream &os, const RException &rhs)
-  {
-    os << "!! EXCEPTION: " << rhs.File << " line " << rhs.Line << ": " << rhs.Message;
-    return os;
-  }
-  
-  //Redefube macro to allow it to expand here.
-  #define RException(a) RException(__FILE__, __LINE__, a)
-
+  if (a + RTest_NEAR_FLOAT > b && a - RTest_NEAR_FLOAT < b)
+    return true;
+  return false;
 }
