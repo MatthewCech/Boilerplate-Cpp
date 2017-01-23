@@ -2,7 +2,7 @@
 @file    Timekeeper.hpp
 @author  Reverie Wisp
 @par     Contact: contact@rw0.pw
-@date    6/4/2016
+@date    1/22/2017
 
 @brief
 A class for timing sections of an application in milliseconds and getting the
@@ -17,40 +17,49 @@ average of a series of runs up to a certain number of samples.
 
 namespace RUtils
 {
+	class Timekeeper
+	{
+	public:
+		// Constructor and Destructor
+		Timekeeper();
 
-  class Timekeeper
-  {
-  public:
-    //Static member functions
-    static void StartFrame();
-    static void EndFrame();
-    static int GetLastTimeMS();
-    static int GetAvgTimeMS();
-    static void SetMaxSamples(unsigned int samples);
+		// Static member functions
+		void StartFrame();
+		void EndFrame();
+		int GetLastTimeMS();
+		int GetAvgTimeMS();
+		void SetMaxSamples(unsigned int samples);
 
-  private:
-    //Frame time markers
-    static std::chrono::milliseconds startTime_;
-    static std::chrono::milliseconds endTime_;
+	private:
+		// Frame time markers
+		std::chrono::milliseconds startTime_;
+		std::chrono::milliseconds endTime_;
 
-    //Other data for averaging
-    static double frameSamples_;
-    static double frameAvg_;
-    static long long lastTime_;
-    static unsigned int maxFrameSamples_;
-  };
-
-
-  //Static time initialization
-  std::chrono::milliseconds Timekeeper::startTime_ = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now().time_since_epoch());
-  std::chrono::milliseconds Timekeeper::endTime_ = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now().time_since_epoch());
-  double Timekeeper::frameSamples_ = 0;
-  double Timekeeper::frameAvg_ = 0;
-  long long Timekeeper::lastTime_ = 0;
-  unsigned int Timekeeper::maxFrameSamples_ = 50;
+		// Other data for averaging
+		double frameSamples_;
+		double frameAvg_;
+		long long lastTime_;
+		unsigned int maxFrameSamples_;
+	};
+}
 
 
-  //Start frame marker. Should be called at the start of a single cycle of the program.
+
+// Inline Implementation
+namespace RUtils
+{
+  // Constructor initialization 
+	inline Timekeeper::Timekeeper() 
+		: startTime_(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()))
+		, endTime_(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()))
+		, frameSamples_(0)
+		, frameAvg_(0)
+		, lastTime_(0)
+		, maxFrameSamples_(50)
+	{  }
+
+
+  // Start frame marker. Should be called at the start of a single cycle of the program.
   inline void Timekeeper::StartFrame()
   {
     startTime_ = std::chrono::duration_cast<std::chrono::milliseconds>(
@@ -58,7 +67,7 @@ namespace RUtils
   }
 
 
-  //End frame marker. Should be called at the end of a single cycle of the program.
+  // End frame marker. Should be called at the end of a single cycle of the program.
   inline void Timekeeper::EndFrame()
   {
     endTime_ = std::chrono::duration_cast<std::chrono::milliseconds>(
@@ -71,14 +80,14 @@ namespace RUtils
   }
 
 
-  //Get the last frame time in MS as an int.
+  // Get the last frame time in MS as an int.
   inline int Timekeeper::GetLastTimeMS()
   {
     return static_cast<int>(lastTime_);
   }
 
 
-  //Returns the average frame time that has been calculated.
+  // Returns the average frame time that has been calculated.
   inline int Timekeeper::GetAvgTimeMS()
   {
     return static_cast<int>(frameAvg_);
@@ -92,3 +101,4 @@ namespace RUtils
     frameSamples_ = 0;
   }
 }
+
