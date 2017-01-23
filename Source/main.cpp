@@ -9,22 +9,25 @@ The application entry point and boilerplate main.
 @copyright "Don't be a Jerk" (See LICENSE.md)
 *****************************************************************************/
 #include <iostream>               // std::cout
-#include <RUtils\RException.hpp>  // Rutils::RException
+#include <RUtils/Timekeeper.hpp>  // Rutils::RException
 
 
 
 // Application entry point
-int main(int argc, char** argv) try
+int main(int argc, char** argv)
 {
-  if (argc == 1)
-    std::cout << "Hello world!" << std::endl;
-  else
-    throw RUtils::RException("More than one argument!");
+	// Creates objects
+	RUtils::Timekeeper t;
+	t.StartFrame();   
+	
+  // Start the timing frame and run program
+	for (int i{ 0 }; i < 10; ++i)
+		std::cout << "I'm printed line " << i + 1 << "!" << '\n';
+
+	// End the timing frame and print
+	t.EndFrame(); 
+	std::cout << "Printing All that took: " << t.GetLastTimeMS() << "ms\n";
 
   // Return normally.
   return 0;
-}
-catch(RUtils::RException e)
-{
-  std::cout << e << std::endl;
 }
