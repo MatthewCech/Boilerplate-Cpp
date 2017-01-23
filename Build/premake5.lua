@@ -5,20 +5,18 @@
 
 -- Variable definition: CHANGE THESE TO MODIFY PROJECT NAME
 -- Brief reminder: This is actual lua, functions and whatnot are totally allowed.
-local PROJECT_NAME = "Boilerplate"  -- solution or project name where applicable
-local TARGET_NAME = "boilerplate"   -- executable name on windows
-local ROOT = "../"   -- Path to project root
+local ROOT         = "../"          -- Path to project root
 
 
 -- [ WORKSPACE CONFIGURATION ] --
-workspace PROJECT_NAME                      -- Solution Name
+workspace "Boilerplate"                      -- Solution Name
     configurations { "Debug", "Release"}     -- Optimization/General config mode in VS
     platforms { "x64", "x86"}                -- Dropdown platforms section in VS
     location (ROOT .. "project_" .. _ACTION) -- Note: _ACTION is the argument passed to premake.
 
     -- [ PROJECT CONFIGURATION ] --
-    project PROJECT_NAME         -- Project name
-        targetname TARGET_NAME   -- Executable name
+    project "boilerplate"        -- Project name
+        targetname "boilerplate" -- Executable name
         kind "ConsoleApp"        -- Style of app in project- WindowedApp, ConsoleApp, etc.
         language "C++"
 
