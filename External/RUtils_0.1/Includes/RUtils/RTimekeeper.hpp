@@ -17,30 +17,30 @@ average of a series of runs up to a certain number of samples.
 
 namespace RUtils
 {
-	class Timekeeper
-	{
-	public:
-		// Constructor and Destructor
-		Timekeeper();
+  class Timekeeper
+  {
+  public:
+    // Constructor and Destructor
+    Timekeeper();
+ 
+    // Static member functions
+    void StartFrame();
+    void EndFrame();
+    int GetLastTimeMS();
+    int GetAvgTimeMS();
+    void SetMaxSamples(unsigned int samples);
 
-		// Static member functions
-		void StartFrame();
-		void EndFrame();
-		int GetLastTimeMS();
-		int GetAvgTimeMS();
-		void SetMaxSamples(unsigned int samples);
-
-	private:
-		// Frame time markers
-		std::chrono::milliseconds startTime_;
-		std::chrono::milliseconds endTime_;
-
-		// Other data for averaging
-		double frameSamples_;
-		double frameAvg_;
-		long long lastTime_;
-		unsigned int maxFrameSamples_;
-	};
+  private:
+    // Frame time markers
+    std::chrono::milliseconds startTime_;
+    std::chrono::milliseconds endTime_;
+    
+    // Other data for averaging
+    double frameSamples_;
+    double frameAvg_;
+    long long lastTime_;
+    unsigned int maxFrameSamples_;
+  };
 }
 
 
@@ -49,14 +49,14 @@ namespace RUtils
 namespace RUtils
 {
   // Constructor initialization 
-	inline Timekeeper::Timekeeper() 
-		: startTime_(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()))
-		, endTime_(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()))
-		, frameSamples_(0)
-		, frameAvg_(0)
-		, lastTime_(0)
-		, maxFrameSamples_(50)
-	{  }
+  inline Timekeeper::Timekeeper() 
+    : startTime_(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()))
+    , endTime_(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()))
+    , frameSamples_(0)
+    , frameAvg_(0)
+    , lastTime_(0)
+    , maxFrameSamples_(50)
+  {  }
 
 
   // Start frame marker. Should be called at the start of a single cycle of the program.
@@ -101,4 +101,3 @@ namespace RUtils
     frameSamples_ = 0;
   }
 }
-
