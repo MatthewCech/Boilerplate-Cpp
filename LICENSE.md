@@ -3,7 +3,7 @@
 - Adapted from: https://github.com/JohannesMP/Dont-be-a-Jerk
 - Originally from: https://github.com/evantahler/Dont-be-a-Jerk
 
-_I_ am the software author - ReverieWisp on Github.
+_I_ am the software author - MatthewCech on Github.
 _You_ are the user of this software. You might be a _we_, and that's OK!
 
 This is free, open source software. I will never charge you to use,
