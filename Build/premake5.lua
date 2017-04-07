@@ -72,6 +72,8 @@ workspace "Boilerplate"                      -- Solution Name
     -- Files to be compiled (cpp) or added to project (visual studio)
     files
     {
+      source_dir_root .. "/**.c",
+      source_dir_root .. "/**.h",
       source_dir_root .. "/**.cpp",
       source_dir_root .. "/**.hpp",
       source_dir_root .. "/**.tpp",
