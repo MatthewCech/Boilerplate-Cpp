@@ -1,7 +1,7 @@
 /*!***************************************************************************
 @file    RException.hpp
-@author  Reverie Wisp
-@par     Contact: contact@rw0.pw
+@author  rw
+@par     contact@rw0.pw
 @date    6/4/2016
 
 @brief

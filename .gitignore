@@ -19,4 +19,5 @@ make/
 project_*/
 documentation/
 
-
+# Banket force-ignore:
+.vs
