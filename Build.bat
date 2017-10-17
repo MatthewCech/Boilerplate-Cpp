@@ -1,6 +1,6 @@
 @echo off
-rem This is just a one-stop file to run the vs2015 build script. Cleans then builds it again.
-rem I suspect this will not work with any of the files in use. It should announce that when cleaning.
+rem This is just a one-click file to run the vs2017 build script - Cleans then builds it again.
+rem This will not work well with any of the files in use. It should announce that when cleaning.
 
 echo -- [ CLEANING ] --
 cd Build
@@ -11,7 +11,7 @@ echo.
 echo -- [ BUILDING ] --
 cd Build
 echo Building...
-call build_vs2015.bat
+call build_vs2017.bat
 
 echo.
 echo.
