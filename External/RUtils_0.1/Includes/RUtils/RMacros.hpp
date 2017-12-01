@@ -7,7 +7,7 @@
 @brief
 A few debugging macros to assist with quickly printing values or testing.
 
-@copyright "Don't be a Jerk" (See LICENSE.md)
+@copyright (See RUTIL_LICENSE.md)
 *****************************************************************************/
 #include <iostream>
 

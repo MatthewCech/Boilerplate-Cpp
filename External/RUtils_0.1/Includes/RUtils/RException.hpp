@@ -7,7 +7,7 @@
 @brief
 Custom exception class designed to provide specific line and file information.
 
-@copyright "Don't be a Jerk" (See LICENSE.md)
+@copyright (See RUTIL_LICENSE.md)
 *****************************************************************************/
 #pragma once
 #include <ostream> // std::ostream

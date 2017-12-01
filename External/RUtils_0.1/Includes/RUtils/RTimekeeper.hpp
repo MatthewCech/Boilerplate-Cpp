@@ -9,7 +9,7 @@ A class for timing sections of an application in milliseconds and getting the
 average of a series of runs up to a certain number of samples. Because this is
 all implemented in the header, better or worse everthing is marked inline. 
 
-@copyright "Don't be a Jerk" (See LICENSE.md)
+@copyright (See RUTIL_LICENSE.md)
 *****************************************************************************/
 #pragma once
 #include <chrono> // std::chrono
