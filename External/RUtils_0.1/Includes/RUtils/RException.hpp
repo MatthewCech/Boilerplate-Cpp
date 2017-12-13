@@ -12,7 +12,7 @@ Custom exception class designed to provide specific line and file information.
 #pragma once
 #include <ostream> // std::ostream
 #include <string>  // std::string
-
+#include <cstring> // strrchr
 
 
 namespace RUtils
@@ -51,6 +51,15 @@ namespace RUtils
     return os;
   }
   
+  
+#if defined(_WIN32)
+  #define __FILENAME__ (strrchr("\\" __FILE__, '\\') + 1)
+#else
+  #define __FILENAME__ __FILE__
+#endif
+
   //Redefube macro to allow it to expand here.
-  #define RException(a) RException(__FILE__, __LINE__, a)
+  #define RException(a) RException(__FILENAME__, __LINE__, a)
+
+  #undef __FILENAME__
 }
