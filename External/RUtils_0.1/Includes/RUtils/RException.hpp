@@ -19,6 +19,7 @@ namespace RUtils
 {
   //Undefine the exception structure first to avoid expanding the macro.
   #undef RException
+  #undef __FILENAME__
   struct RException
   {
     //Constructor
@@ -60,6 +61,4 @@ namespace RUtils
 
   //Redefube macro to allow it to expand here.
   #define RException(a) RException(__FILENAME__, __LINE__, a)
-
-  #undef __FILENAME__
 }
