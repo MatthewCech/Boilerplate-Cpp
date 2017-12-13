@@ -1,3 +1,11 @@
+-- helper to get windows sdk version
+function os.winSdkVersion()
+  local reg_arch = iif( os.is64bit(), "\\Wow6432Node\\", "\\" )
+  local sdk_version = os.getWindowsRegistry( "HKLM:SOFTWARE" .. reg_arch .."Microsoft\\Microsoft SDKs\\Windows\\v10.0\\ProductVersion" )
+  if sdk_version ~= nil then return sdk_version end
+end
+
+
 -- Premake5 Wiki: https://github.com/premake/premake-core/wiki
 -- Based on Premake GLFW demo courtesy of JohannesMP
 -- https://github.com/JohannesMP
@@ -53,7 +61,7 @@ workspace "Boilerplate"                      -- Solution Name
     
     filter {"system:windows", "action:vs*"}
         linkoptions   { "/ignore:4099" }      -- Ignore library pdb warnings when running in debug
-        systemversion("10.0.15063.0") -- windows 10 SDK
+        systemversion(os.winSdkVersion() .. ".0") -- windows SDK
 
     filter {} -- clear filter   
 
