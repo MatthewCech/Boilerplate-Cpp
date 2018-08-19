@@ -7,27 +7,27 @@
 @brief 
 <you can put a multiline description of your application here...>
 
-@copyright See LICENSE.md
+@copyright See LICENSE.md <remember to add a LICENSE.md file!>
 *****************************************************************************/
 #include <iostream>               // std::cout
-#include <RUtils/RTimekeeper.hpp>  // Rutils::RException
+#include <GUtils/GTimekeeper.hpp> // Rutils::RException
 
 
 // Application entry point
 int main(int argc, char** argv)
 {
   // Timing start
-  RUtils::Timekeeper t;
+  GUtils::Timekeeper t;
   t.StartFrame();   
   
   // <Some code that does things>
-  for (int i{ 0 }; i < 10; ++i)
-    std::cout << "I'm printed line " << i + 1 << "!" << '\n';
+  int totalLines = 20;
+  for (int i = 0; i < totalLines; ++i)
+    std::cout << "I'm printed line number " << i + 1 << " of " << totalLines << '\n';
 
   // Timing end
   t.EndFrame(); 
-  std::cout << "Printing all that took: " << t.GetLastTimeMS() << "ms\n";
-
-  // Normal termination
+  std::cout << "Printing all that took: " << t.GetLastTimeMS() << "ms" << std::endl;
+  std::cin.ignore();
   return 0;
 }

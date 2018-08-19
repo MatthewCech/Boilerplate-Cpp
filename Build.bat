@@ -4,6 +4,7 @@ rem This will not work well with any of the files in use. It should announce tha
 
 echo -- [ CLEANING ] --
 cd Build
+echo ('cannot find the file' messages are harmless)
 call clean.bat
 
 echo.
