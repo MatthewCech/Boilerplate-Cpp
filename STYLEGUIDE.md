@@ -2,7 +2,7 @@ C++ Style Guide
 ---
 
 #### Indenting
-2 spaces are used in lieu of tabs to keep code more compact and consistently spaced across editors.
+2 spaces are used in lieu of tabs to keep code more compact and consistently spaced across editors. However, if someone is insisting on tabs and won't work on the project otherwise, then tabs should be used because it's often easier for space users to tweak settings to make tabs look consistent than the other way around. A mix of tabs and spaces is quite possibly the worst outcome, and should be avoided at all costs regardless of personal indent opinions.
 
 #### Comments
 Single line comments have a space before them to ensure consistent formatting and readability, and to differentiate them from commented out code which has no space.
@@ -19,15 +19,26 @@ Single line comments have a space before them to ensure consistent formatting an
 ```
 
 #### Braces
-When braces are present, Allman style is used. Braces should be used to prevent scope confusion. While it's acceptable to omit them for single line statements, statements should never be adjusted to make them one line just to avoid brace usage. 
+When braces are present, Allman style is used. Braces should be used to prevent scope confusion. While it's acceptable to omit them for single line statements, statements should never be adjusted to make them one line just to avoid brace usage. Try and avoid nesting single-line statements to help combat bugs.
+
 ```c++
 if(foo == 1)
   return;
 
-if(derp)
+if(bar)
 {
   printf("...Hello?\n");
   printf("It's me;\n");
+}
+
+if(foo)
+{
+  if(bar)
+    printf("Outer statement has braces, innermost doesn't have to.\n");
+}
+else
+{
+  printf("B/c of this, we know this 'else' belongs to the first 'if'!\n");
 }
 ```
 
@@ -39,7 +50,7 @@ return derp ? 5 : 3;
 ```
 
 #### Includes
-Includes should only be present if used. To help enforce this, a brief comment detailing what is used from a header file should be placed after each include. Library headers and local headers should be grouped. Larger groups may be labeled if necessary. File paths should be based on the project root.
+Includes should only be present if used. To help enforce this, a brief comment detailing what is used from a header file should be placed after each include. Library headers and local headers should be grouped. Larger groups may be labeled if necessary, and file paths should be based on the project root. It's recommended that project-specific headers be placed after library headers.
 ```c++
 // Algorithm Related
 #include <algorithm> // find
@@ -75,15 +86,15 @@ private:
 ```
 
 #### Variables
-Member variables have an underscore post-fix to differentiate between them and local variables, which start with a lowercase character. Public member variables and global variables should be capitalized. Realistically, an `m` prefix is acceptable for private member variables, but this can get a bit icky if methods and other variables start using a lot of `M`s in their name. Using underscore as a prefix is generally not advisable, given a lot of larger libraries use single or double underscore to denote internal variables. If used, this can lead to unfortunate name overlaps.
+Member variables have an underscore post-fix to differentiate between them and local variables, which start with a lowercase character. Public member variables and global variables should be capitalized. Realistically, an `m` prefix is acceptable for private member variables, but this can get a bit icky if methods and other variables start using a lot of `M`s in their name. Using underscore as a prefix is generally not advisable if you're interacting with any C code, given a lot of larger libraries use single or double underscore to denote internal variables. If used, this can lead to unfortunate and breaking name overlaps.
 ```c++
 class Foo
 {
 public:
-  int FlerpCount;
+  int FooCount;
 
 private:
-  double derpCount_;
+  double fooCount_;
 }
 ```
 
@@ -116,7 +127,9 @@ std::vector<Floop *> MyFunction(Derp derp, Floop *floop)
 }
 ```
 #### Varaible and Function Naming
-Variables and functions should be named appropriately without being abbreviated to the point of not being able to understand them. When it doubt, make the name longer and more descriptive. For example, 'a_' is not a reasonable variable name if you are using it for something like sound amplitude, whereas 'amplitude_' is more appropriate. 
+Variables and functions should be named appropriately without being abbreviated to the point of not being able to understand them. When it doubt, make the name longer and more descriptive. For example, 'a' is not a reasonable variable name if you are using it for something like sound amplitude, whereas 'amplitude' is more appropriate.
+
+Ideally, names go from less to more specific. Instead of two variables called `applesInFoo` and `pearsInFoo`, the names `fooPearsCount` and `fooApplesCount` are preferred because they allow us to narrow down the category the variable falls under from left to right. `Foo` is the part they both share, so we lead with foo, and because we may add other variables to do with Pears later, we put `Pears` in the middle. That way, two new variables, `fooPearsCreated` and `fooApplesCreated` can be added and can follow the same pattern. The bonus of this broad to specific naming style is that intellisense and autocomplete gets faster to use and narrow.
 
 #### File Naming
 - Header files should use the `.hpp` extension unless you are explicity able to compile the file in `C`, at which point the `.h` extension is appropriate.
