@@ -4,7 +4,7 @@
 @date    8/24/2018
 
 @brief
-Custom exception class designed to provide specific line and file information.
+Utilities for string manipulation using the standard library.
 Part of the General Utilities project.
 
 @copyright (See LICENSE.md)
